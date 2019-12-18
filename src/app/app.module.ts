@@ -8,12 +8,16 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ClassesComponent } from './classes/classes.component';
+import { StudentComponent } from './student/student.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent
+    MainNavComponent,
+    ClassesComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
