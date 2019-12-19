@@ -9,20 +9,30 @@
       <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
       <a mat-list-item (click)="drawer.toggle()">
         X </a>
-      <a mat-list-item [routerLink]="['/management']">Management </a>
+      <a mat-list-item [routerLink]="['/location-and-program']">All Classes</a>
+      <a mat-list-item [routerLink]="['/location-and-program']">Add New Class</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/location-and-program']">Student List</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/location-and-program']">User List</a>
+      <a mat-list-item [routerLink]="['/location-and-program']">Add New User</a>
+
 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="basic">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span [routerLink]="['/']">Classes Systems</span>
+      <span [routerLink]="['/management']">Management</span>
       <span class="spacer"> </span>
-      <a mat-list-item [routerLink]="['/location-and-program']">Register To Class</a>
-
+      <a mat-list-item [routerLink]="['/location-and-program']">All Classes</a>
+      <a mat-list-item [routerLink]="['/location-and-program']">Add New Class</a>
+      <a mat-list-item [routerLink]="['/location-and-program']">Student List</a>
+      <a mat-list-item [routerLink]="['/location-and-program']">User List</a>
+      <a mat-list-item [routerLink]="['/location-and-program']">Add New User</a>
     </mat-toolbar>
     <ng-content></ng-content>
     <!-- Add Content Here -->
