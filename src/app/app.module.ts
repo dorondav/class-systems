@@ -10,6 +10,8 @@ import { MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, Mat
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClassesComponent } from './classes/classes.component';
 import { StudentComponent } from './student/student.component';
+import { ShopComponent } from './shop/shop.component';
+import { ShopListComponent } from './shop/shop-list/shop-list.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { StudentComponent } from './student/student.component';
     AppComponent,
     MainNavComponent,
     ClassesComponent,
-    StudentComponent
+    StudentComponent,
+    ShopComponent,
+    ShopListComponent
   ],
   imports: [
     BrowserModule,
