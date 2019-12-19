@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faEdit, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shop-list',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shop-list.component.css']
 })
 export class ShopListComponent implements OnInit {
-
+  faEdit = faEdit;
+  faSignInAlt = faSignInAlt;
   constructor() { }
 
   ngOnInit() {

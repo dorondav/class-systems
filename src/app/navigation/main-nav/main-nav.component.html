@@ -8,11 +8,11 @@
 
       <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
       <a mat-list-item (click)="drawer.toggle()">
-        <fa-icon [icon]="faTimes" size="lg"></fa-icon>
-      </a>
-      <a mat-list-item href=" #">Class Management </a>
-      <a mat-list-item href="#">Login</a>
-      <a mat-list-item href="#">Logout</a>
+        X </a>
+      <a mat-list-item [routerLink]="['/management']">Management </a>
+      <a mat-list-item [routerLink]="['/location-and-program']">Register To Class</a>
+      <a mat-list-item>Login</a>
+      <a mat-list-item>Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -23,9 +23,10 @@
       </button>
       <span [routerLink]="['/']">Classes Systems</span>
       <span class="spacer"> </span>
-      <a class="topLinks" href="#">Class Management</a>
-      <a class="topLinks" href="#">Login</a>
-      <a class="topLinks" href="#">Logout</a>
+      <a mat-list-item [routerLink]="['/location-and-program']">Register To Class</a>
+      <a mat-list-item [routerLink]="['/management']">Management </a>
+      <a class="topLinks">Login</a>
+      <a class="topLinks">Logout</a>
     </mat-toolbar>
     <ng-content></ng-content>
     <!-- Add Content Here -->
