@@ -14,8 +14,8 @@
             </ol>
 
             <div class="btn-action">
-                <button mat-button>Add New</button>
-                <button mat-button>All</button>
+                <button mat-button [routerLink]="['/add-class']" color="primary">Add New</button>
+                <button mat-button [routerLink]="['/classes']" color="primary">full List</button>
             </div>
 
         </section>
@@ -30,7 +30,7 @@
                 <li> <a> #12345: student full name (class)</a> </li>
             </ul>
             <div class="btn-action">
-                <button mat-button>All</button>
+                <button mat-button color="primary">All</button>
             </div>
         </section>
         <section class="user-section">
@@ -45,7 +45,7 @@
 
             </article>
             <div class="btn-action">
-                <button mat-button>Edit Profile</button>
+                <button mat-button color="primary">Manage Profile</button>
             </div>
 
 

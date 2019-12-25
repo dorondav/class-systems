@@ -1,0 +1,25 @@
+h2 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+mat-card {
+    padding: 10px;
+    margin: 10px;
+}
+.text-fields mat-form-field {
+    width: 100%;
+}
+
+mat-spinner {
+    margin: auto;
+}
+
+.date-input mat-form-field,
+.time-input mat-form-field {
+    padding: 10px 10px 0 0;
+}
+
+button {
+    margin: 1rem 0;
+}

@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, MatListModule, MatDividerModule } from '@angular/material';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClassesComponent } from './classes/classes.component';
 import { StudentComponent } from './student/student.component';
@@ -15,6 +13,12 @@ import { MainNavComponent } from './navigation/main-nav/main-nav.component';
 import { ShopClassComponent } from './shop/shop-class/shop-class.component';
 import { ManagementComponent } from './management/management.component';
 import { ManagementNavComponent } from './navigation/management-nav/management-nav.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LessonsService } from './classes/lessons.service';
+import { LessonCreateComponent } from './classes/lesson-create/lesson-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularMaterialModule } from './angular-material.module';
+
 
 
 @NgModule({
@@ -27,23 +31,18 @@ import { ManagementNavComponent } from './navigation/management-nav/management-n
     ShopListComponent,
     ShopClassComponent,
     ManagementComponent,
-    ManagementNavComponent
+    ManagementNavComponent,
+    LessonCreateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
     FontAwesomeModule,
-    MatDividerModule
-
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularMaterialModule
   ],
-  providers: [],
+  providers: [LessonsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
