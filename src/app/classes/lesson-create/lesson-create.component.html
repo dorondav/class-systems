@@ -1,10 +1,12 @@
 <app-management-nav>
 
-    <h2>Create new Lesson</h2>
+    <h2 *ngIf="mode === 'create-lesson' ">Create new Lesson</h2>
+    <h2 *ngIf="mode !== 'create-lesson' ">Edit Lesson Information </h2>
     <mat-card>
         <mat-spinner *ngIf="isLoading"> </mat-spinner>
         <form [formGroup]='form' *ngIf="!isLoading" (submit)="onLessonSave()">
             <div class="text-fields">
+
                 <mat-form-field>
                     <input matInput type="text" formControlName="title" placeholder="Lesson Title">
                     <mat-error *ngIf="form.get('title').invalid">Please enter a lesson title.</mat-error>
@@ -19,6 +21,12 @@
                 </mat-form-field>
 
             </div>
+
+            <div>
+                <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+                <input type="file" #filePicker (change)="onImagePicked($event)">
+            </div>
+
             <div class="date-input">
 
                 <mat-form-field>

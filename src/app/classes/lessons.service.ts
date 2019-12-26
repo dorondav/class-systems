@@ -24,7 +24,7 @@ export class LessonsService {
         return {
           lessons: lessonData.lessons.map(lesson => {
             return {
-              id: lesson.id,
+              id: lesson._id,
               title: lesson.title,
               content: lesson.content,
               startDate: lesson.startDate,
@@ -41,22 +41,6 @@ export class LessonsService {
       }));
   }
 
-
-  getLesson(id: string) {
-    return this.http.get<{
-      _id: string,
-      title: string,
-      content: string,
-      startDate: string,
-      endDate: string,
-      hoursStart: string,
-      hoursEnd: string,
-      location: string,
-      price: number,
-      numberOfSessions: number
-    }>('http://localhost:3000/api/lessons' + id);
-  }
-
   createLesson(
     title: string,
     content: string,
@@ -68,11 +52,6 @@ export class LessonsService {
     price: number,
     numberOfSessions: number
   ) {
-
-    // edit the stare end end date
-
-
-
     const lesson: Lesson = {
       id: null,
       title,
@@ -85,9 +64,10 @@ export class LessonsService {
       price,
       numberOfSessions
     };
-    this.http.post<{ message: string, lesson: Lesson }>('http://localhost:3000/api/lessons', lesson)
+    this.http.post<{ message: string, lesson: Lesson, lessonId: string }>('http://localhost:3000/api/lessons', lesson)
       .subscribe(responseData => {
-        console.log(responseData);
+        const id = responseData.lessonId;
+        lesson.id = id;
         this.lessons.push(lesson);
         this.lessonUpdated.next([...this.lessons]);
         this.router.navigate(['/classes']);
@@ -105,9 +85,65 @@ export class LessonsService {
     // lessonData.append('location', location);
     // lessonData.append('price', priceStr);
     // lessonData.append('numberOfSessions', numberOfSessionsStr);
+  }
 
+  getLesson(id: string) {
+    return this.http.get<{
+      _id: string;
+      title: string;
+      content: string;
+      location: string;
+      startDate: string;
+      endDate: string;
+      hoursStart: string;
+      hoursEnd: string;
+      price: number;
+      numberOfSessions: number;
+    }>('http://localhost:3000/api/lessons/' + id);
+  }
 
+  updateLesson(
+    id: string,
+    title: string,
+    content: string,
+    location: string,
+    startDate: string,
+    endDate: string,
+    hoursStart: string,
+    hoursEnd: string,
+    price: number,
+    numberOfSessions: number) {
+    const lesson: Lesson = {
+      id,
+      title,
+      content,
+      location,
+      startDate,
+      endDate,
+      hoursStart,
+      hoursEnd,
+      price,
+      numberOfSessions
+    };
+    this.http.put('http://localhost:3000/api/lessons/' + id, lesson)
+      .subscribe(res => {
+        const updatedLessons = [...this.lessons];
+        const oldLessonIndex = updatedLessons.findIndex(p => p.id === lesson.id);
+        updatedLessons[oldLessonIndex] = lesson;
+        this.lessons = updatedLessons;
+        this.router.navigate(['/classes']);
+        this.lessonUpdated.next([...this.lessons]);
+      });
+  }
 
+  deleteLesson(lessonID: string) {
+    return this.http.delete('http://localhost:3000/api/lessons/' + lessonID)
+      .subscribe(res => {
+        // const updatedLessons = this.lessons.filter(lesson => lesson.id !== lessonID);
+        // this.lessons = updatedLessons;
+        // this.lessonUpdated.next([...this.lessons]);
+        this.router.navigate(['/classes']);
 
+      });
   }
 }

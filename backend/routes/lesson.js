@@ -51,7 +51,7 @@ router.post("", (req, res, next) => {
                 message: 'Lesson added successfully',
                 lesson: {
                     ...createdLesson,
-                    id: createdLesson._id
+                    lessonId: createdLesson._id
                 }
             })
 
@@ -63,5 +63,63 @@ router.post("", (req, res, next) => {
 });
 
 
+router.get('/:id', (req, res, next) => {
+    Lesson.findById(req.params.id)
+        .then(lesson => {
+            if (lesson) {
+                res.status(200).json(lesson);
+
+            } else {
+                res.status(404).json({ message: "Lesson not found!" });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching lesson failed!"
+            });
+        });
+});
+
+
+router.put('/:id', (req, res, next) => {
+    const lesson = new Lesson({
+        _id: req.body.id,
+        title: req.body.title,
+        content: req.body.content,
+        location: req.body.location,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        hoursStart: req.body.hoursStart,
+        hoursEnd: req.body.hoursEnd,
+        price: req.body.price,
+        numberOfSessions: req.body.numberOfSessions,
+    });
+    Lesson.updateOne({ _id: req.params.id }, lesson)
+        .then(result => {
+            res.status(200).json({ message: 'Update successful!' })
+
+        }).catch(error => {
+            res.status(500).json({
+                message: "Update lesson failed!"
+            });
+        });
+});
+
+router.delete('/:id', (req, res, next) => {
+    Lesson.deleteOne({ _id: req.params.id })
+        .then(result => {
+            if (result.n > 0) {
+                res.status(200).json({ message: "Deletion successful!" });
+            } else {
+                res.status(401).json({ message: "Not authorized!" });
+            }
+        }).catch(error => {
+            console.log(error);
+
+            res.status(500).json({
+                message: "Deleting Lesson failed!"
+            });
+        });
+})
 module.exports = router;
 

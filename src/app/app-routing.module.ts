@@ -5,7 +5,6 @@ import { ShopListComponent } from './shop/shop-list/shop-list.component';
 import { ShopClassComponent } from './shop/shop-class/shop-class.component';
 import { ManagementComponent } from './management/management.component';
 import { ClassesComponent } from './classes/classes.component';
-import { ClassDetailComponent } from './classes/class-detail/class-detail.component';
 import { LessonCreateComponent } from './classes/lesson-create/lesson-create.component';
 
 

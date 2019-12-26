@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { LessonsService } from '../lessons.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Lesson } from '../lesson.model';
 
 @Component({
   selector: 'app-lesson-create',
@@ -9,11 +11,67 @@ import { LessonsService } from '../lessons.service';
 })
 export class LessonCreateComponent implements OnInit {
   form: FormGroup;
-  mode = 'create-lesson';
   isLoading = false;
-  constructor(private lessonService: LessonsService) { }
+  private mode = 'create-lesson';
+  private lessonId: string;
+  private lesson: Lesson;
+  imagePreview: string;
+
+  constructor(private lessonService: LessonsService, public route: ActivatedRoute) {
+
+  }
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({ image: file });
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   ngOnInit() {
+
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('lessonId')) {
+        this.mode = 'edit-lesson';
+        this.lessonId = paramMap.get('lessonId');
+
+        this.lessonService.getLesson(this.lessonId)
+          .subscribe(lessonData => {
+            this.isLoading = false;
+            this.lesson = {
+              id: lessonData._id,
+              title: lessonData.title,
+              content: lessonData.content,
+              location: lessonData.location,
+              startDate: lessonData.startDate,
+              endDate: lessonData.endDate,
+              hoursStart: lessonData.hoursStart,
+              hoursEnd: lessonData.hoursEnd,
+              price: lessonData.price,
+              numberOfSessions: lessonData.numberOfSessions
+            };
+            this.form.patchValue({
+              title: this.lesson.title,
+              content: this.lesson.content,
+              location: this.lesson.location,
+              startDate: this.lesson.startDate,
+              endDate: this.lesson.endDate,
+              hoursStart: this.lesson.hoursStart,
+              hoursEnd: this.lesson.hoursEnd,
+              price: this.lesson.price,
+              numLessons: this.lesson.numberOfSessions
+            });
+          });
+      } else {
+        this.mode = 'create-lesson';
+        this.lessonId = null;
+      }
+    });
+    // init Form
     this.form = new FormGroup({
       title: new FormControl(null, { validators: [Validators.required] }),
       content: new FormControl(null, { validators: [Validators.required] }),
@@ -25,6 +83,7 @@ export class LessonCreateComponent implements OnInit {
       price: new FormControl(null, { validators: [Validators.required, Validators.min(1)] }),
       numLessons: new FormControl(null, { validators: [Validators.required, Validators.min(1)] })
     });
+
   }
 
   onLessonSave() {
@@ -32,19 +91,34 @@ export class LessonCreateComponent implements OnInit {
       return;
     }
     // this.isLoading = true;
-
-    this.lessonService.createLesson(
-      this.form.value.title,
-      this.form.value.content,
-      this.form.value.location,
-      this.form.value.startDate,
-      this.form.value.endDate,
-      this.form.value.hoursStart,
-      this.form.value.hoursEnd,
-      this.form.value.price,
-      this.form.value.numLessons
-    );
+    if (this.mode === 'create-lesson') {
+      this.lessonService.createLesson(
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.location,
+        this.form.value.startDate,
+        this.form.value.endDate,
+        this.form.value.hoursStart,
+        this.form.value.hoursEnd,
+        this.form.value.price,
+        this.form.value.numLessons
+      );
+    } else {
+      this.lessonService.updateLesson(
+        this.lessonId,
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.location,
+        this.form.value.startDate,
+        this.form.value.endDate,
+        this.form.value.hoursStart,
+        this.form.value.hoursEnd,
+        this.form.value.price,
+        this.form.value.numLessons
+      );
+    }
 
     this.form.reset();
   }
+
 }

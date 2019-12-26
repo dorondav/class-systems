@@ -3,6 +3,7 @@ import { LessonsService } from './lessons.service';
 import { Lesson } from './lesson.model';
 import { PageEvent } from '@angular/material';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-classes',
@@ -11,28 +12,33 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class ClassesComponent implements OnInit {
   lessons: Lesson[] = [];
-  // lessonsPerPage = 16;
+  isLoading = false;
+  faTrash = faTrash;
   currentPage = 1;
-  totalLessons = 0;
   lessonsPerPage = 10;
+  totalLessons = 0;
   lessonsSizeOptions = [1, 2, 5, 10];
   private lessonSub: Subscription;
   constructor(private lessonsService: LessonsService) {
-
   }
   ngOnInit() {
+
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)
       .subscribe(lessonData => {
         this.lessons = lessonData.lessons;
         this.totalLessons = this.lessons.length;
-
       });
   }
   onChangedPage(pageData: PageEvent) {
     // this.isLoading = true;
+
     this.currentPage = pageData.pageIndex + 1;
     this.lessonsPerPage = pageData.pageSize;
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage);
   }
 
+
+  onDelete(lessonId: string) {
+    this.lessonsService.deleteLesson(lessonId);
+  }
 }
