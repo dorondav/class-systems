@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { LessonsService } from '../lessons.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Lesson } from '../lesson.model';
+import { LessonsService } from '../../services/lessons.service';
 
 @Component({
   selector: 'app-lesson-create',

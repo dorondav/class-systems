@@ -5,12 +5,8 @@
             <h4>Classes</h4>
             <mat-divider></mat-divider>
             <ol>
-                <li> <a> #12345: class name (program name)</a> </li>
-                <li> <a> #12345: class name (program name)</a> </li>
-                <li> <a> #12345: class name (program name)</a> </li>
-                <li> <a> #12345: class name (program name)</a> </li>
-                <li> <a> #12345: class name (program name)</a> </li>
-                <li> <a> #12345: class name (program name)</a> </li>
+                <li *ngFor="let lesson of lessons"> <a> #{{lesson.id | slice:-6}}: {{lesson.title}} </a> </li>
+
             </ol>
 
             <div class="btn-action">

@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { Lesson } from './lesson.model';
 import { Router } from '@angular/router';
+import { Lesson } from '../classes/lesson.model';
 
 
 

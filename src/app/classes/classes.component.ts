@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LessonsService } from './lessons.service';
+import { LessonsService } from '../services/lessons.service';
 import { Lesson } from './lesson.model';
 import { PageEvent } from '@angular/material';
 import { Subscription } from 'rxjs/internal/Subscription';

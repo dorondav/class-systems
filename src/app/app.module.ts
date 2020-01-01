@@ -14,7 +14,7 @@ import { ShopClassComponent } from './shop/shop-class/shop-class.component';
 import { ManagementComponent } from './management/management.component';
 import { ManagementNavComponent } from './navigation/management-nav/management-nav.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LessonsService } from './classes/lessons.service';
+import { LessonsService } from './services/lessons.service';
 import { LessonCreateComponent } from './classes/lesson-create/lesson-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material.module';

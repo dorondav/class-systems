@@ -1,6 +1,14 @@
- errors to fix
+# TO DO
+
+*create single page for the classes 
+*loader
+*pagnation
+*add program name to all of the lessons - (select input);
+*add images to lessons (from close json file);
+*create user (rule besat)
+
+
+ ## Bugs 
  ==============
 
- 1) on class deletion - site not being refreshing; - dune
- 2) loader
- 
+*managment page- fix the add new lesson btn

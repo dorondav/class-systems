@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LessonsService } from '../classes/lessons.service';
+import { LessonsService } from '../services/lessons.service';
 import { Lesson } from '../classes/lesson.model';
 
 @Component({
@@ -14,13 +14,13 @@ export class ManagementComponent implements OnInit {
   constructor(private lessonsService: LessonsService) { }
 
   ngOnInit() {
-    console.log(this.getAllLessons());
-
+    this.getAllLessons();
   }
   getAllLessons() {
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)
       .subscribe(lessonData => {
         this.lessons = lessonData.lessons;
+        console.log(this.lessons);
       });
   }
 }
