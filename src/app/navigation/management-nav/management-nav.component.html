@@ -26,7 +26,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span [routerLink]="['/management']">Management</span>
+      <span class="logo" [routerLink]="['/management']">Management</span>
       <span class="spacer"> </span>
       <a mat-list-item [routerLink]="['/classes']">All Classes</a>
       <a mat-list-item [routerLink]="['/create-lesson']">Add New Class</a>

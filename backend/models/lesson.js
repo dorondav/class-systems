@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const lessonSchma = new Schema({
     title: { type: String, require: true },
     content: { type: String, require: true },
+    program: { type: String, require: true },
     startDate: { type: String, require: true },
     endDate: { type: String, require: true },
     location: { type: String, require: true },

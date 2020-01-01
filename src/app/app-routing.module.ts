@@ -16,7 +16,10 @@ const routes: Routes = [
       { path: ':id', component: ShopClassComponent }
     ]
   },
-  { path: 'management', component: ManagementComponent },
+
+  {
+    path: 'management', component: ManagementComponent
+  },
   { path: 'classes', component: ClassesComponent },
   { path: 'create-lesson', component: LessonCreateComponent },
   { path: 'edit-lesson/:lessonId', component: LessonCreateComponent }

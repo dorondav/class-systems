@@ -12,6 +12,13 @@
                     <mat-error *ngIf="form.get('title').invalid">Please enter a lesson title.</mat-error>
                 </mat-form-field>
                 <mat-form-field>
+                    <mat-label>Select Program</mat-label>
+                    <mat-select formControlName="program">
+                        <mat-option *ngFor="let program of programs" value="{{program}}">{{program}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
                     <input matInput type="text" formControlName="content" placeholder="Lesson Description "
                         autocomplete="off">
                     <mat-error *ngIf="form.get('content').invalid">Please enter a lesson Description.</mat-error>
@@ -22,11 +29,6 @@
                     <mat-error *ngIf="form.get('location').invalid">Please enter a lesson location.</mat-error>
                 </mat-form-field>
 
-            </div>
-
-            <div>
-                <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
-                <input type="file" #filePicker (change)="onImagePicked($event)">
             </div>
 
             <div class="date-input">

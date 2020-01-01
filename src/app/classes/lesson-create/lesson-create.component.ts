@@ -15,6 +15,7 @@ export class LessonCreateComponent implements OnInit {
   private mode = 'create-lesson';
   private lessonId: string;
   private lesson: Lesson;
+  public programs = ['Javascript', 'Python', 'Java', '.NET'];
   imagePreview: string;
 
   constructor(private lessonService: LessonsService, public route: ActivatedRoute) {
@@ -33,7 +34,7 @@ export class LessonCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('lessonId')) {
         this.mode = 'edit-lesson';
@@ -45,6 +46,7 @@ export class LessonCreateComponent implements OnInit {
             this.lesson = {
               id: lessonData._id,
               title: lessonData.title,
+              program: lessonData.program,
               content: lessonData.content,
               location: lessonData.location,
               startDate: lessonData.startDate,
@@ -57,6 +59,7 @@ export class LessonCreateComponent implements OnInit {
             this.form.patchValue({
               title: this.lesson.title,
               content: this.lesson.content,
+              program: lessonData.program,
               location: this.lesson.location,
               startDate: this.lesson.startDate,
               endDate: this.lesson.endDate,
@@ -66,9 +69,13 @@ export class LessonCreateComponent implements OnInit {
               numLessons: this.lesson.numberOfSessions
             });
           });
+        this.isLoading = false;
+
       } else {
         this.mode = 'create-lesson';
         this.lessonId = null;
+        this.isLoading = false;
+
       }
     });
     // init Form
@@ -76,6 +83,7 @@ export class LessonCreateComponent implements OnInit {
       title: new FormControl(null, { validators: [Validators.required] }),
       content: new FormControl(null, { validators: [Validators.required] }),
       location: new FormControl(null, { validators: [Validators.required] }),
+      program: new FormControl(null, { validators: [Validators.required] }),
       startDate: new FormControl(null, { validators: [Validators.required] }),
       endDate: new FormControl(null, { validators: [Validators.required] }),
       hoursStart: new FormControl(null, { validators: [Validators.required] }),
@@ -95,6 +103,7 @@ export class LessonCreateComponent implements OnInit {
       this.lessonService.createLesson(
         this.form.value.title,
         this.form.value.content,
+        this.form.value.program,
         this.form.value.location,
         this.form.value.startDate,
         this.form.value.endDate,
@@ -108,6 +117,7 @@ export class LessonCreateComponent implements OnInit {
         this.lessonId,
         this.form.value.title,
         this.form.value.content,
+        this.form.value.program,
         this.form.value.location,
         this.form.value.startDate,
         this.form.value.endDate,
@@ -117,7 +127,6 @@ export class LessonCreateComponent implements OnInit {
         this.form.value.numLessons
       );
     }
-
     this.form.reset();
   }
 

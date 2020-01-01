@@ -6,13 +6,15 @@
         <section class="classes-section">
             <h4>Classes</h4>
             <mat-divider></mat-divider>
-            <ol>
-                <li *ngFor="let lesson of lessons"> <a> #{{lesson.id | slice:-6}}: {{lesson.title}} </a> </li>
+            <ul>
+                <!-- edit-lesson -->
+                <li *ngFor="let lesson of lessons"> <a [routerLink]="['/edit-lesson',lesson.id]">{{lesson.title}}
+                        <small>({{lesson.program}})</small> </a> </li>
 
-            </ol>
+            </ul>
 
             <div class="btn-action">
-                <button mat-button [routerLink]="['/add-class']" color="primary">Add New</button>
+                <button mat-button [routerLink]="['/create-lesson']" color="primary">Add New</button>
                 <button mat-button [routerLink]="['/classes']" color="primary">full List</button>
             </div>
 

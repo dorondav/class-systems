@@ -27,6 +27,7 @@ export class LessonsService {
               id: lesson._id,
               title: lesson.title,
               content: lesson.content,
+              program: lesson.program,
               startDate: lesson.startDate,
               endDate: lesson.endDate,
               hoursStart: lesson.hoursStart,
@@ -44,6 +45,7 @@ export class LessonsService {
   createLesson(
     title: string,
     content: string,
+    program: string,
     location: string,
     startDate: string,
     endDate: string,
@@ -55,6 +57,7 @@ export class LessonsService {
     const lesson: Lesson = {
       id: null,
       title,
+      program,
       content,
       location,
       startDate,
@@ -72,19 +75,7 @@ export class LessonsService {
         this.lessonUpdated.next([...this.lessons]);
         this.router.navigate(['/classes']);
       });
-    // const priceStr = price.toString();
-    // const numberOfSessionsStr = numberOfSessions.toString();
 
-
-    // lessonData.append('title', title);
-    // lessonData.append('content', content);
-    // lessonData.append('startDate', startDate);
-    // lessonData.append('endDate', endDate);
-    // lessonData.append('hoursStart', hoursStart);
-    // lessonData.append('hoursEnd', hoursEnd);
-    // lessonData.append('location', location);
-    // lessonData.append('price', priceStr);
-    // lessonData.append('numberOfSessions', numberOfSessionsStr);
   }
 
   getLesson(id: string) {
@@ -92,6 +83,7 @@ export class LessonsService {
       _id: string;
       title: string;
       content: string;
+      program: string;
       location: string;
       startDate: string;
       endDate: string;
@@ -105,6 +97,7 @@ export class LessonsService {
   updateLesson(
     id: string,
     title: string,
+    program: string,
     content: string,
     location: string,
     startDate: string,
@@ -116,6 +109,7 @@ export class LessonsService {
     const lesson: Lesson = {
       id,
       title,
+      program,
       content,
       location,
       startDate,

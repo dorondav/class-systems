@@ -36,6 +36,7 @@ router.post("", (req, res, next) => {
     const lesson = new Lesson({
         title: req.body.title,
         content: req.body.content,
+        program: req.body.program,
         location: req.body.location,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
@@ -53,7 +54,9 @@ router.post("", (req, res, next) => {
                     ...createdLesson,
                     lessonId: createdLesson._id
                 }
+
             })
+            console.log(lesson);
 
         }).catch(error => {
             res.status(500).json({
@@ -85,6 +88,7 @@ router.put('/:id', (req, res, next) => {
     const lesson = new Lesson({
         _id: req.body.id,
         title: req.body.title,
+        program: req.body.program,
         content: req.body.content,
         location: req.body.location,
         startDate: req.body.startDate,

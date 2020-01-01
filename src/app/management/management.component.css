@@ -22,12 +22,17 @@ section {
     flex-direction: column;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
 
 .student-section li,
 .classes-section li {
     padding: 10px;
     margin: 5px;
     border: 1px solid var(--primary-color);
+    cursor: pointer;
 }
 
 .student-section li:hover,

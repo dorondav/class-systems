@@ -2,7 +2,10 @@
   width: 200px;
 }
 
-
+.logo {
+  cursor: pointer;
+  color: var(--primary-color);
+}
 
 .sidenav .mat-toolbar {
   background: inherit;
@@ -26,6 +29,8 @@
   margin: 0 10px;
   text-decoration: none;
   color: black;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 

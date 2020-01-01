@@ -6,6 +6,9 @@
   width: 200px;
 }
 
+.logo_main {
+  cursor: pointer;
+}
 
 
 .sidenav .mat-toolbar {
@@ -30,6 +33,8 @@
   margin: 0 10px;
   text-decoration: none;
   color: white;
+  font-weight: 400;
+
 }
 
 

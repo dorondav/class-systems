@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 // Create Defulte Lessonse 
-app.use(defaultDBValuesMiddle);
+// app.use(defaultDBValuesMiddle);
 
 
 // Set Lessons Route
