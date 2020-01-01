@@ -16,7 +16,6 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html,
-body {
-    height: 100%;
+mat-spinner {
+    margin: 2rem auto;
 }

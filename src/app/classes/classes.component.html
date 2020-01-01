@@ -1,4 +1,6 @@
 <app-management-nav>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
     <div class="container">
         <mat-card *ngFor="let lesson of lessons">
             <mat-card-header>

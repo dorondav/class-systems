@@ -11,16 +11,20 @@ export class ManagementComponent implements OnInit {
   currentPage = 1;
   lessonsPerPage = 10;
   lessons: Lesson[] = [];
+  isLoading = false;
+
   constructor(private lessonsService: LessonsService) { }
 
   ngOnInit() {
+    this.isLoading = true;
+
     this.getAllLessons();
   }
   getAllLessons() {
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)
       .subscribe(lessonData => {
         this.lessons = lessonData.lessons;
-        console.log(this.lessons);
+        this.isLoading = false;
       });
   }
 }
