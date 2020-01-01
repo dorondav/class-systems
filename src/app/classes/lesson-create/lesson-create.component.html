@@ -8,15 +8,17 @@
             <div class="text-fields">
 
                 <mat-form-field>
-                    <input matInput type="text" formControlName="title" placeholder="Lesson Title">
+                    <input matInput type="text" formControlName="title" placeholder="Lesson Title" autocomplete="off">
                     <mat-error *ngIf="form.get('title').invalid">Please enter a lesson title.</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="text" formControlName="content" placeholder="Lesson Description ">
+                    <input matInput type="text" formControlName="content" placeholder="Lesson Description "
+                        autocomplete="off">
                     <mat-error *ngIf="form.get('content').invalid">Please enter a lesson Description.</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="text" formControlName="location" placeholder="Lesson Location">
+                    <input matInput type="text" formControlName="location" placeholder="Lesson Location"
+                        autocomplete="off">
                     <mat-error *ngIf="form.get('location').invalid">Please enter a lesson location.</mat-error>
                 </mat-form-field>
 

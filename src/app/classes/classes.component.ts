@@ -22,12 +22,7 @@ export class ClassesComponent implements OnInit {
   constructor(private lessonsService: LessonsService) {
   }
   ngOnInit() {
-
-    this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)
-      .subscribe(lessonData => {
-        this.lessons = lessonData.lessons;
-        this.totalLessons = this.lessons.length;
-      });
+    this.getAllLessons();
   }
   onChangedPage(pageData: PageEvent) {
     // this.isLoading = true;
@@ -36,9 +31,18 @@ export class ClassesComponent implements OnInit {
     this.lessonsPerPage = pageData.pageSize;
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage);
   }
-
-
   onDelete(lessonId: string) {
-    this.lessonsService.deleteLesson(lessonId);
+    this.lessonsService.deleteLesson(lessonId)
+      .subscribe(() => {
+        this.getAllLessons();
+      });
+  }
+  getAllLessons() {
+    this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)
+      .subscribe(lessonData => {
+        this.lessons = lessonData.lessons;
+        this.totalLessons = this.lessons.length;
+
+      });
   }
 }

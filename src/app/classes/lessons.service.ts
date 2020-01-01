@@ -137,13 +137,6 @@ export class LessonsService {
   }
 
   deleteLesson(lessonID: string) {
-    return this.http.delete('http://localhost:3000/api/lessons/' + lessonID)
-      .subscribe(res => {
-        // const updatedLessons = this.lessons.filter(lesson => lesson.id !== lessonID);
-        // this.lessons = updatedLessons;
-        // this.lessonUpdated.next([...this.lessons]);
-        this.router.navigate(['/classes']);
-
-      });
+    return this.http.delete('http://localhost:3000/api/lessons/' + lessonID);
   }
 }

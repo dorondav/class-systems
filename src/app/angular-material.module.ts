@@ -14,7 +14,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MAT_DATE_LOCALE
 } from '@angular/material';
 
 @NgModule({
@@ -34,7 +35,9 @@ import {
         MatInputModule,
         MatDatepickerModule,
         MatNativeDateModule
-    ]
+    ],
+    providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+
 })
 
 export class AngularMaterialModule { }
