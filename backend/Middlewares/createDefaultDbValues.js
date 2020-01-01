@@ -7,6 +7,7 @@ module.exports = (res, req, next) => {
             const lessonOne = new Lesson({
                 title: 'lessonOne',
                 content: 'this is just a filler',
+                program: '.NET',
                 startDate: '2.3.2021',
                 endDate: '2.3.2022',
                 location: 'Tel Aviv',
@@ -25,6 +26,7 @@ module.exports = (res, req, next) => {
             const lessoneTwo = new Lesson({
                 title: 'lessoneTwo',
                 content: 'this is just a filler for Lesson Two',
+                program: 'Javascript',
                 startDate: '2.3.2021',
                 endDate: '2.3.2022',
                 location: 'Tel Aviv',
