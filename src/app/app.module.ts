@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClassesComponent } from './classes/classes.component';
-import { StudentComponent } from './student/student.component';
 import { ShopComponent } from './shop/shop.component';
 import { ShopListComponent } from './shop/shop-list/shop-list.component';
 import { MainNavComponent } from './navigation/main-nav/main-nav.component';
@@ -18,6 +17,9 @@ import { LessonsService } from './services/lessons.service';
 import { LessonCreateComponent } from './classes/lesson-create/lesson-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material.module';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 
@@ -26,13 +28,15 @@ import { AngularMaterialModule } from './angular-material.module';
     AppComponent,
     MainNavComponent,
     ClassesComponent,
-    StudentComponent,
     ShopComponent,
     ShopListComponent,
     ShopClassComponent,
     ManagementComponent,
     ManagementNavComponent,
     LessonCreateComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

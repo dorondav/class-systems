@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 import { Router } from '@angular/router';
 import { Lesson } from '../classes/lesson.model';
 
-
+const BACKEND_URL = environment.apiUrl + '/lessons/';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class LessonsService {
 
   getLessons(lessonsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${lessonsPerPage}&page=${currentPage}`;
-    return this.http.get<{ message: string, lessons: any, maxLessons: number }>('http://localhost:3000/api/lessons' + queryParams)
+    return this.http.get<{ message: string, lessons: any, maxLessons: number }>(BACKEND_URL + queryParams)
       .pipe(map(lessonData => {
         return {
           lessons: lessonData.lessons.map(lesson => {
@@ -67,7 +68,7 @@ export class LessonsService {
       price,
       numberOfSessions
     };
-    this.http.post<{ message: string, lesson: Lesson, lessonId: string }>('http://localhost:3000/api/lessons', lesson)
+    this.http.post<{ message: string, lesson: Lesson, lessonId: string }>(BACKEND_URL, lesson)
       .subscribe(responseData => {
         const id = responseData.lessonId;
         lesson.id = id;
@@ -91,7 +92,7 @@ export class LessonsService {
       hoursEnd: string;
       price: number;
       numberOfSessions: number;
-    }>('http://localhost:3000/api/lessons/' + id);
+    }>(BACKEND_URL + id);
   }
 
   updateLesson(
@@ -119,7 +120,7 @@ export class LessonsService {
       price,
       numberOfSessions
     };
-    this.http.put('http://localhost:3000/api/lessons/' + id, lesson)
+    this.http.put(BACKEND_URL + id, lesson)
       .subscribe(res => {
         const updatedLessons = [...this.lessons];
         const oldLessonIndex = updatedLessons.findIndex(p => p.id === lesson.id);
@@ -131,6 +132,6 @@ export class LessonsService {
   }
 
   deleteLesson(lessonID: string) {
-    return this.http.delete('http://localhost:3000/api/lessons/' + lessonID);
+    return this.http.delete(BACKEND_URL + lessonID);
   }
 }

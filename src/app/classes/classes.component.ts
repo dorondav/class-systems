@@ -35,6 +35,7 @@ export class ClassesComponent implements OnInit {
 
   }
   onDelete(lessonId: string) {
+    this.isLoading = true;
     this.lessonsService.deleteLesson(lessonId)
       .subscribe(() => {
         this.getAllLessons();
@@ -42,6 +43,7 @@ export class ClassesComponent implements OnInit {
       });
   }
   getAllLessons() {
+
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)
       .subscribe(lessonData => {
         this.lessons = lessonData.lessons;

@@ -12,10 +12,8 @@ ul {
 li {
     padding: 5px;
     margin: 5px;
-    border: 1px solid purple;
+    border: 1px solid var(--primary-color);
 }
-
-
 
 .container {
     display: grid;
@@ -23,4 +21,10 @@ li {
     grid-gap: 1rem;
     padding: 5px;
     margin: 10px;
+}
+
+h3 {
+    margin: 20px;
+    text-align: center;
+    color: var(--primary-color);
 }

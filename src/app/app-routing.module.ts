@@ -6,6 +6,9 @@ import { ShopClassComponent } from './shop/shop-class/shop-class.component';
 import { ManagementComponent } from './management/management.component';
 import { ClassesComponent } from './classes/classes.component';
 import { LessonCreateComponent } from './classes/lesson-create/lesson-create.component';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 const routes: Routes = [
@@ -16,14 +19,17 @@ const routes: Routes = [
       { path: ':id', component: ShopClassComponent }
     ]
   },
-
   {
     path: 'management', component: ManagementComponent
   },
   { path: 'classes', component: ClassesComponent },
   { path: 'create-lesson', component: LessonCreateComponent },
-  { path: 'edit-lesson/:lessonId', component: LessonCreateComponent }
+  { path: 'edit-lesson/:lessonId', component: LessonCreateComponent },
 
+  // Login routs
+  { path: 'profile', component: AuthComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registresion', component: RegisterComponent }
 
 
 ];
