@@ -1,5 +1,7 @@
 export interface AuthData {
+    name: string;
     email: string;
     password: string;
-    premotion: string;
+    permission: string;
+    phone: string;
 }

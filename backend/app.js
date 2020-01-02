@@ -4,7 +4,10 @@ const mongoose = require("mongoose");
 const path = require("path");
 
 const lessonRoutes = require("./routes/lesson");
+const userRoutes = require("./routes/user");
+
 const defaultDBValuesMiddle = require("./Middlewares/createDefaultDbValues");
+
 const app = express();
 
 mongoose
@@ -36,10 +39,12 @@ app.use((req, res, next) => {
 });
 
 // Create Defulte Lessonse 
-app.use(defaultDBValuesMiddle);
+// app.use(defaultDBValuesMiddle);
 
 
-// Set Lessons Route
+// Set app Routes
+
 app.use("/api/lessons", lessonRoutes);
+app.use("/api/user", userRoutes);
 
 module.exports = app;

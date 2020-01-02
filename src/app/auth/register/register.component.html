@@ -1,3 +1,38 @@
-<p>
-  register works!
-</p>
+<app-management-nav>
+
+  <mat-card>
+    <mat-spinner *ngIf="isLoading"> </mat-spinner>
+    <form [formGroup]='authForm' *ngIf="!isLoading" (submit)="onUserSave()">
+
+      <mat-form-field>
+        <input matInput type="text" formControlName="name" placeholder="Full Name: " autocomplete="off">
+        <mat-error *ngIf="authForm.get('name').invalid">Please enter a Name </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" formControlName="email" placeholder="Email: " autocomplete="off">
+        <mat-error *ngIf="authForm.get('email').invalid">Please enter a Email.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" formControlName="password" placeholder="Select Password: " autocomplete="off">
+        <mat-error *ngIf="authForm.get('password').invalid">Please enter a Password.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Select Role</mat-label>
+        <mat-select formControlName="permission">
+          <mat-option *ngFor="let role of roles" value="{{role}}">{{role}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" formControlName="phone" placeholder="Phone Number: " autocomplete="off">
+        <mat-error *ngIf="authForm.get('phone').invalid">Please enter a Phone number.</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Register</button>
+
+    </form>
+
+  </mat-card>
+
+</app-management-nav>

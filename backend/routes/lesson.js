@@ -1,5 +1,4 @@
 const express = require("express");
-const Lesson = require("../models/lesson");
 
 const LessonController = require("../controllers/lessons");
 
