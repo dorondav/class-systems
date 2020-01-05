@@ -15,7 +15,7 @@ export class ClassesComponent implements OnInit {
   isLoading = false;
   faTrash = faTrash;
   currentPage = 1;
-  lessonsPerPage = 10;
+  lessonsPerPage = 2;
   totalLessons = 0;
   lessonsSizeOptions = [1, 2, 5, 10];
   private lessonSub: Subscription;
@@ -26,12 +26,15 @@ export class ClassesComponent implements OnInit {
     this.getAllLessons();
   }
   onChangedPage(pageData: PageEvent) {
-    // this.isLoading = true;
-
+    this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.lessonsPerPage = pageData.pageSize;
-    this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage);
+    // this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage);
+    this.getAllLessons();
+    console.log('pafe changed');
+
     this.isLoading = false;
+
 
   }
   onDelete(lessonId: string) {
@@ -47,8 +50,9 @@ export class ClassesComponent implements OnInit {
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)
       .subscribe(lessonData => {
         this.lessons = lessonData.lessons;
-        this.totalLessons = this.lessons.length;
+        // this.totalLessons = this.lessons.length;
         this.isLoading = false;
+        this.totalLessons = lessonData.maxLessons;
       });
   }
 }

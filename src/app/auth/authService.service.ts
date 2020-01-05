@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
-const BACKEND_URL = environment.apiUrl + '/user/';
 
+const BACKEND_URL = environment.apiUrl + '/user/';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +22,7 @@ export class AuthService {
         if (role === 'Guest') {
           this.router.navigate(['/']);
         } else {
+          console.table(result);
           this.router.navigate(['/management']);
         }
 

@@ -4,6 +4,7 @@ exports.getAllLessons = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     const lessonQuery = Lesson.find();
+
     let fetchedLessons;
     if (pageSize && currentPage) {
         lessonQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
