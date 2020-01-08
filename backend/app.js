@@ -38,9 +38,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// Create Defulte Lessonse 
-// app.use(defaultDBValuesMiddle);
-
+// Create Defulte Lessonse & User Administrator
+app.use(defaultDBValuesMiddle);
 
 // Set app Routes
 

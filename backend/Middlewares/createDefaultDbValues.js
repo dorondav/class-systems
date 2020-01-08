@@ -1,6 +1,32 @@
 const Lesson = require("../models/lesson");
+const User = require("../models/user");
 
 
+// Create Deault Admin User
+module.exports = (res, req, next) => {
+    User.countDocuments(function (err, count) {
+        if (!err && count === 0) {
+            const admin = new User({
+                name: 'Testy McTest',
+                password: '12345',
+                permission: 'Admin',
+                email: 'test@test.com',
+                phone: '052-5555555'
+            });
+            console.log(admin);
+
+            admin.save()
+                .then(result => {
+                    console.log('Default Administrator Value was created');
+                }).catch(err => {
+                    console.error(err);
+                });
+        }
+    });
+    next();
+}
+
+// Create Deault Lessons 
 module.exports = (res, req, next) => {
     Lesson.countDocuments(function (err, count) {
         if (!err && count === 0) {

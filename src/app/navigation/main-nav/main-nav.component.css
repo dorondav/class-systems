@@ -34,10 +34,8 @@
   text-decoration: none;
   color: white;
   font-weight: 400;
-
+  cursor: pointer;
 }
-
-
 
 @media(min-width: 959px) {
   .sidenav {

@@ -11,7 +11,7 @@
         X </a>
       <a mat-list-item [routerLink]="['/management']">Management </a>
       <a mat-list-item [routerLink]="['/location-and-program']">Register To Class</a>
-      <a mat-list-item>Login</a>
+      <a mat-list-item [routerLink]="['/login']">Login</a>
       <a mat-list-item>Logout</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -24,9 +24,9 @@
       <span class="logo_main" [routerLink]="['/']">Classes Systems</span>
       <span class="spacer"> </span>
       <a mat-list-item [routerLink]="['/location-and-program']">Register To Class</a>
-      <a mat-list-item [routerLink]="['/management']">Management </a>
-      <a class="topLinks">Login</a>
-      <a class="topLinks">Logout</a>
+      <a mat-list-item [routerLink]="['/management']" *ngIf="userIsAuthenticated">Management </a>
+      <a mat-list-item [routerLink]="['/login']" *ngIf="!userIsAuthenticated">Login</a>
+      <a class="topLinks" *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</a>
     </mat-toolbar>
     <ng-content></ng-content>
     <!-- Add Content Here -->
