@@ -29,7 +29,8 @@ const routes: Routes = [
   // Login routs
   { path: 'profile', component: AuthComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registresion', component: RegisterComponent }
+  { path: 'registresion', component: RegisterComponent },
+  { path: 'edit-user/:userId', component: RegisterComponent }
 
 
 ];

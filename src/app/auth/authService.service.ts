@@ -21,8 +21,8 @@ export class AuthService {
   private userEmail: string;
   private userPhone: string;
   private userRole: string;
+  private userD: AuthData[] = [];
   private authStatusListener = new Subject<boolean>();
-
   constructor(private http: HttpClient, private router: Router) { }
 
 
@@ -35,6 +35,9 @@ export class AuthService {
   }
   getUsername() {
     return this.username;
+  }
+  ById() {
+    return this.user;
   }
   getUserPhone() {
     return this.userPhone;
@@ -75,13 +78,13 @@ export class AuthService {
         this.username = response.fetchedUser.name;
         this.userEmail = response.fetchedUser.email;
         this.userPhone = response.fetchedUser.phone;
+        this.user = response.fetchedUser;
         this.authStatusListener.next(true);
         const now = new Date();
         const expirationDate = new Date(
           now.getTime() + expiresInDuration * 1000
         );
         this.saveAuthData(token, expirationDate, this.userId, this.userRole, this.username, this.userEmail, this.userPhone);
-        // 'User', 'Guest'
         // redurection by permission
         if (this.userRole !== 'User' && this.userRole !== 'Guest') {
           this.router.navigate(['/management']);
@@ -188,5 +191,20 @@ export class AuthService {
     localStorage.removeItem('name');
     localStorage.removeItem('userEmail');
     localStorage.removeItem('userPhone');
+  }
+
+  getAuthUserById(userId) {
+    return this.http.get(BACKEND_URL + userId);
+  }
+
+  updateUserData(user, id: string, ) {
+    return this.http.put(BACKEND_URL + id, user)
+      .subscribe((res) => {
+        localStorage.setItem('userRole', res.userData.permission);
+        localStorage.setItem('username', res.userData.name);
+        localStorage.setItem('userEmail', res.userData.email);
+        localStorage.setItem('userPhone', res.userData.phone);
+        this.router.navigate(['/management']);
+      });
   }
 }

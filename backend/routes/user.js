@@ -45,7 +45,6 @@ router.post('/login', (req, res, next) => {
                 });
             }
             fetchedUser = user;
-
             return bcrypt.compare(req.body.loginPassword, user.password);
         })
         .then(result => {
@@ -63,11 +62,6 @@ router.post('/login', (req, res, next) => {
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                // userId: fetchedUser._id,
-                // userRole: fetchedUser.permission,
-                // username: fetchedUser.name,
-                // userEmail: fetchedUser.email,
-                // userPhone: fetchedUser.phone,
                 fetchedUser
             });
         })
@@ -78,4 +72,49 @@ router.post('/login', (req, res, next) => {
         });
 });
 
+
+router.get('/:id', (req, res, next) => {
+    User.findById(req.params.id)
+        .then(user => {
+            if (user) {
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ message: "User not found!" });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching User failed!"
+            });
+        });
+});
 module.exports = router;
+
+router.put('/:id', (req, res, next) => {
+    console.table(req.params.id);
+
+    bcrypt.hash(req.body.password, 10)
+        .then(hash => {
+            const user = new User({
+                _id: req.params.id,
+                name: req.body.name,
+                password: hash,
+                permission: req.body.permission,
+                email: req.body.email,
+                phone: req.body.phone,
+            });
+            User.updateOne({ _id: req.params.id }, user)
+                .then(result => {
+                    res.status(200).json({
+                        message: 'User update successful!',
+                        userData: user
+                    });
+                })
+
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Update user failed!"
+            });
+        });
+});

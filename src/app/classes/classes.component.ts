@@ -31,8 +31,6 @@ export class ClassesComponent implements OnInit {
     this.lessonsPerPage = pageData.pageSize;
     // this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage);
     this.getAllLessons();
-    console.log('pafe changed');
-
     this.isLoading = false;
 
 

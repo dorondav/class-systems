@@ -18,6 +18,8 @@ export class ManagementComponent implements OnInit, OnDestroy {
   username: string;
   userPhone: string;
   userEmail: string;
+  userId: string;
+
   private authStatusSub: Subscription;
 
   constructor(private lessonsService: LessonsService, private authService: AuthService) { }
@@ -33,6 +35,7 @@ export class ManagementComponent implements OnInit, OnDestroy {
     this.username = this.authService.getUsername();
     this.userEmail = this.authService.getUserEmail();
     this.userPhone = this.authService.getUserPhone();
+    this.userId = this.authService.getUserId();
     this.getAllLessons();
 
   }
