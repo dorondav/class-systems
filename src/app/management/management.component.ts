@@ -31,7 +31,10 @@ export class ManagementComponent implements OnInit, OnDestroy {
       });
     this.userRole = this.authService.getUserRole();
     this.username = this.authService.getUsername();
+    this.userEmail = this.authService.getUserEmail();
+    this.userPhone = this.authService.getUserPhone();
     this.getAllLessons();
+
   }
   getAllLessons() {
     this.lessonsService.getLessons(this.lessonsPerPage, this.currentPage)

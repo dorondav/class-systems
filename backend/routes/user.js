@@ -63,11 +63,11 @@ router.post('/login', (req, res, next) => {
             res.status(200).json({
                 token: token,
                 expiresIn: 3600,
-                userId: fetchedUser._id,
-                userRole: fetchedUser.permission,
-                username: fetchedUser.name,
-                userEmail: fetchedUser.email,
-                userPhone: fetchedUser.phone,
+                // userId: fetchedUser._id,
+                // userRole: fetchedUser.permission,
+                // username: fetchedUser.name,
+                // userEmail: fetchedUser.email,
+                // userPhone: fetchedUser.phone,
                 fetchedUser
             });
         })

@@ -20,7 +20,6 @@ export class AuthService {
   private username: string;
   private userEmail: string;
   private userPhone: string;
-
   private userRole: string;
   private authStatusListener = new Subject<boolean>();
 
@@ -65,7 +64,7 @@ export class AuthService {
   }
 
   userLogin(user) {
-    this.http.post(BACKEND_URL + 'login', user).subscribe(response => {
+    this.http.post(BACKEND_URL + 'login', user).subscribe((response: any) => {
       const token = response.token;
       this.token = token;
       if (token) {
@@ -82,8 +81,14 @@ export class AuthService {
           now.getTime() + expiresInDuration * 1000
         );
         this.saveAuthData(token, expirationDate, this.userId, this.userRole, this.username, this.userEmail, this.userPhone);
+        // 'User', 'Guest'
+        // redurection by permission
+        if (this.userRole !== 'User' && this.userRole !== 'Guest') {
+          this.router.navigate(['/management']);
+        } else {
+          this.router.navigate(['/']);
+        }
 
-        this.router.navigate(['/']);
       }
     }, error => {
       this.authStatusListener.next(false);
