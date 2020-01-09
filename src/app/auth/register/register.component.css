@@ -6,3 +6,11 @@ mat-card {
 mat-form-field {
     width: 100%;
 }
+
+/* .btn {
+    padding: 1rem;
+} */
+.btn a,
+.btn button {
+    margin: 1rem;
+}

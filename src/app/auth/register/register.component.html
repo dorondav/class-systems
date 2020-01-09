@@ -29,7 +29,10 @@
         <mat-error *ngIf="authForm.get('phone').invalid">Please enter a Phone number.</mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <div class="btn">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <a mat-raised-button color="warn" [routerLink]="['/management']">Cancel</a>
+      </div>
 
     </form>
 
